@@ -124,7 +124,7 @@
                     type="password"
                     id="password_confirmation"
                     class="form-control"
-                    name="password_confirmation" required autocomplete="new-password"
+                    name="password_confirmation"  autocomplete="new-password"
                     placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                     aria-describedby="password_confirmation"
                 />
