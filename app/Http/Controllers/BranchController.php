@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BranchStoreRequest;
 use Illuminate\Http\Request;
 
 class BranchController extends Controller
@@ -11,7 +12,7 @@ class BranchController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.branch.index');
     }
 
     /**
@@ -19,15 +20,15 @@ class BranchController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.branch.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BranchStoreRequest $request)
     {
-        //
+        return $request;
     }
 
     /**
