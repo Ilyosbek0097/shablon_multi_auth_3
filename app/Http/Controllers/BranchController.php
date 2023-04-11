@@ -120,8 +120,32 @@ class BranchController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+
+        $result = ['status' => 200];
+
+        try {
+            $this->branchRepository->delete($id);
+            DB::commit();
+        }
+        catch (\Exception $e)
+        {
+            DB::rollBack();
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage(),
+            ];
+
+        }
+        if($result['status'] == 200)
+        {
+            return redirect()->route('branchs.index')->with('success', "Ma'umot O'chirildi!");
+        }
+        else{
+            return redirect()->route('branchs.index')->with('error', "Xatolik Sodir Bo'ldi!");
+        }
+
     }
 }

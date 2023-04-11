@@ -68,31 +68,10 @@ class BranchRepository implements BranchRepositoryInterfaces
     public function delete($id)
     {
         // TODO: Implement delete() method.
+        if(!empty($id))
+        {
+            return $this->branch->destroy($id);
+        }
     }
 
 }
-/*// TODO: Implement update() method.
-        $requestData = $data->all();
-
-        if($data->hasFile('image'))
-        {
-            //Edit Image
-            $oldImage = $this->branch->image;
-            if(!empty($oldImage) )
-            {
-//                $image_path = "/site/image/".$oldImage;  // Value is not URL but directory file path
-//                if(File::exists($image_path)) {
-//                    File::delete($image_path);
-//                }
-
-                $file = $data->file('image');
-                $image_name = time().'.'.$file->getClientOriginalExtension();
-                $file->move('site/images/', $image_name);
-                $requestData['image'] = $image_name;
-            }
-            return $this->branch->update($requestData);
-        }
-        else{
-//            return $this->branch->update($requestData);
-        }
-        return '1';*/

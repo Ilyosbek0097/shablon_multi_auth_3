@@ -57,7 +57,7 @@
                                                         <td>
                                                             <a class="btn btn-success btn-sm" href="{{ route('branchs.show',$branch->id ) }}"><i class="bx bx-show me-1"></i> Ko'rish</a>
                                                             <a class="btn btn-info btn-sm" href=" {{ route('branchs.edit', $branch->id) }}"><i class="bx bx-edit-alt me-1"></i> Tahrirlash</a>
-                                                            <a class="btn btn-danger btn-sm" href=" {{ route('branchs.destroy', $branch->id) }}"><i class="bx bx-trash me-1"></i> O'chirish</a>
+                                                            <button data-id="{{ $branch->id }}" type="button" class="btn btn-danger btn-sm btnDelete" data-bs-toggle="modal" data-bs-target="#modalTop" ><i class="bx bx-trash me-1"></i> O'chirish</button>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -72,4 +72,39 @@
             </div>
         </div>
     </div>
+    <div class="mt-3">
+        <div class="modal modal-top fade" id="modalTop" tabindex="-1" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog">
+                <form class="modal-content" method="POST" id="confirmForm">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTopTitle">Eslatma!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Siz rostdan ham ushbu elementni o'chirasizmi!</p>
+                        <input type="hidden" id="branchId" >
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Tasdiqlash</button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Bekor Qilish
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('.btnDelete').on('click', function (e){
+                e.preventDefault();
+               elemtID = $(this).data('id');
+               $("#confirmForm").attr('action', 'branchs/'+elemtID);
+            })
+        });
+    </script>
 @endsection
