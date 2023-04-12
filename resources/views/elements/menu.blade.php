@@ -9,7 +9,13 @@
     <li class="menu-item {{ request()->is('admin/branchs') ? 'active' : '' }}">
         <a href="{{ route('branchs.index') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bxs-bank"></i>
-            <div data-i18n="Analytics">Filial</div>
+            <div data-i18n="Analytics">Filiallar</div>
+        </a>
+    </li>
+    <li class="menu-item {{ request()->is('admin/teachers') ? 'active' : '' }}">
+        <a href="{{ route('teachers.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bxs-group"></i>
+            <div data-i18n="Analytics">O'qituvchilar</div>
         </a>
     </li>
     <!-- Layouts -->

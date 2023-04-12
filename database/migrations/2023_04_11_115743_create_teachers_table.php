@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('phone');
+            $table->string('degree');
+            $table->string('image');
+            $table->foreignId('branch_id')->constrained();
             $table->timestamps();
         });
     }

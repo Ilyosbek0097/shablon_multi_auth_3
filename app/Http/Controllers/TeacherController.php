@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    protected $teacherRepository;
+    protected TeacherRepositoryInterfaces $teacherRepository;
     public function __construct(TeacherRepositoryInterfaces $teacherRepository)
     {
         $this->teacherRepository = $teacherRepository;
@@ -19,8 +19,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-//        dd($this->teacherRepository);
-        return $this->teacherRepository->all();
+        $teachers = $this->teacherRepository->all();
+        return view('admin.teacher.index', compact('teachers'));
     }
 
     /**
@@ -28,7 +28,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.teacher.create');
     }
 
     /**
