@@ -38,8 +38,7 @@
                                                     <th>Telefon Raqami</th>
                                                     <th>Ma'lumoti</th>
                                                     <th>Surati</th>
-                                                    <th>Filiali</th>
-                                                    <th>Amallar</th>
+                                                    <th class="text-center">Amallar</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody class="table-border-bottom-0">

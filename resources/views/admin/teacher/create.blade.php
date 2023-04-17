@@ -37,10 +37,10 @@
                             <div class="mb-3">
                                 <label class="form-label" for="degree">Ma'lumotini Tanlang</label>
                                 <select id="degree" name="degree" class="form-control @error('degree') is-invalid @enderror">
-                                    <option>--- Ma'lumotini Tanlang ---</option>
-                                    <option>Oliy</option>
-                                    <option>O'rta</option>
-                                    <option>O'rta Maxsus</option>
+                                    <option disabled selected>--- Ma'lumotini Tanlang ---</option>
+                                    <option value="oliy">Oliy</option>
+                                    <option value="orta">O'rta</option>
+                                    <option value="orta-maxsus">O'rta Maxsus</option>
                                 </select>
                                 @error('degree')
                                     <div class="mt-2 text-danger">

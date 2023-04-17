@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('phone');
             $table->string('degree');
             $table->string('image');
-            $table->foreignId('branch_id')->constrained();
             $table->timestamps();
         });
     }
