@@ -5,9 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Branch extends Model
+class Student extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id';
+
     protected $guarded = [];
+
+    public function getBranch($id)
+    {
+        return Branch::where('id', $id)->first();
+    }
 }

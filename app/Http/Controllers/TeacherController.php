@@ -36,6 +36,8 @@ class TeacherController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @param TeacherStoreRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(TeacherStoreRequest $request)
     {
@@ -61,7 +63,7 @@ class TeacherController extends Controller
             return redirect()->route('teachers.index')->with('success', "Ma'lumotlar Bazaga Kiritildi!");
         }
         else{
-            return redirect()->route('teacherss.index')->with('error', "Xatolik Sodir Bo'ldi!");
+            return redirect()->route('teachers.index')->with('error', "Xatolik Sodir Bo'ldi!");
         }
 
     }

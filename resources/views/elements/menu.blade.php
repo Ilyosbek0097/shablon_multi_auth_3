@@ -18,6 +18,12 @@
             <div data-i18n="Analytics">O'qituvchilar</div>
         </a>
     </li>
+    <li class="menu-item {{ request()->is('admin/students') ? 'active' : '' }}">
+        <a href="{{ route('students.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bxs-user-circle"></i>
+            <div data-i18n="Analytics">O'quvchilar</div>
+        </a>
+    </li>
     <!-- Layouts -->
     <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
