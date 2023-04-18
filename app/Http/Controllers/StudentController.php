@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentStoreRequest;
+use App\Http\Requests\StudentUpdateRequest;
 use App\Models\Branch;
 use App\Models\Student;
 use App\Repositories\Interfaces\StudentRepositoryInterfaces;
@@ -77,9 +78,10 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Student $student)
+    public function show($id)
     {
-        //
+       $studentOne =  $this->studentRepository->get($id);
+       return view('admin.student.show', compact('studentOne'));
     }
 
     /**
@@ -87,22 +89,68 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        $branchs = Branch::all();
+        return view('admin.student.edit', compact('student', 'branchs'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Student $student)
+    public function update(StudentUpdateRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+
+        $result = ['status' => 200];
+
+        try {
+            $this->studentRepository->update($id, $request);
+            DB::commit();
+        }
+        catch (\Exception $e)
+        {
+            DB::rollBack();
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage(),
+            ];
+
+        }
+        if($result['status'] == 200)
+        {
+            return redirect()->route('students.index')->with('success', "Ma'lumotlar Tahrirlandi!");
+        }
+        else{
+            return redirect()->route('students.index')->with('error', $result['error']);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student)
+    public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        $result = ['status' => 200];
+
+        try {
+            $this->studentRepository->delete($id);
+            DB::commit();
+        }
+        catch (\Exception $e)
+        {
+            DB::rollBack();
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage(),
+            ];
+        }
+
+        if($result['status'] == 200)
+        {
+            return redirect()->route('students.index')->with('success', "Ma'lumot O'chirildi!");
+        }
+        else{
+            return redirect()->route('students.index')->with('error', "Xatolik Sodir Bo'ldi");
+        }
     }
 }

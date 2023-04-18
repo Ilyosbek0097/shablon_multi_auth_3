@@ -30,6 +30,7 @@ class StudentRepository implements StudentRepositoryInterfaces
     public function get($id)
     {
         // TODO: Implement get() method.
+        return $this->student->findOrFail($id);
     }
 
     /**
@@ -51,13 +52,31 @@ class StudentRepository implements StudentRepositoryInterfaces
         }
     }
 
-    public function update($id, array $data)
+    public function update($id,$data)
     {
         // TODO: Implement update() method.
+        $requestData  = $data->except('image', '_token', '_method');
+        if($data->hasFile('image'))
+        {
+            //Image New Upload
+            $file = $data->file('image');
+            $imageName = time().'.'.$file->getClientOriginalExtension();
+            $file->move('site/images/', $imageName);
+            $requestData['image'] = $imageName;
+            return $this->student->whereId($id)->update($requestData);
+        }
+        else{
+            //Image Old
+            return  $this->student->whereId($id)->update($data->except('image','_token','_method'));
+        }
     }
 
     public function delete($id)
     {
         // TODO: Implement delete() method.
+        if(!empty($id))
+        {
+            $this->student->destroy($id);
+        }
     }
 }
